@@ -4,6 +4,7 @@ from .models import BlogPost,Categories
 
 class BlogPostAdmin(SummernoteModelAdmin):
     summernote_fields = ('content', )
+    readonly_fields =   ('slug',)
 
 
 

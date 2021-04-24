@@ -9,7 +9,7 @@ class Categories(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=50)
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True)
     category = models.ForeignKey(Categories,on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to='photos/%Y/%m/%d/')
     excerpt = models.CharField(max_length=150)
@@ -22,16 +22,17 @@ class BlogPost(models.Model):
     def save(self, *args, **kwargs):
         original_slug = slugify(self.title)
         queryset = BlogPost.objects.all().filter(slug__iexact=original_slug).count()
-
         count = 1
         slug = original_slug
         while(queryset):
-            if queryset is 0:
-                slug = original_slug
-            else:
-               slug = original_slug + '-' + str(queryset - 1)
+            slug = original_slug + '-' + str(count)
+            print(slug)
+            count += 1
+            queryset = BlogPost.objects.all().filter(slug__iexact=slug).count()
 
         self.slug = slug
+
+        
 
         if self.featured:
             try:
