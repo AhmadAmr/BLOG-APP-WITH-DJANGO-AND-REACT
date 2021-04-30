@@ -1,33 +1,65 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import axios from 'axios'
 const Blog = () => {
 
+  const [blogs,setblogs]=useState([])
+  const [feature,setfeature]=useState([])
+  const [category,setCategory]=useState([])
+
+   useEffect( () => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blog/featured`)
+        console.log(res.data)
+        setfeature(res.data[0])
+      }
+      catch(err){
+        alert(err)
+      }
+    }
+    fetchData()
+   },[])
+
+   useEffect( () => {
+    const fetchCategory = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blog/categories`)
+        console.log(res.data)
+        setCategory(res.data)
+      }
+      catch(err){
+        alert(err)
+      }
+    }
+    fetchCategory()
+   },[])
+
+
+   
+
 return (
-    <div>
-        <button type="button" className="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+    
+       <div className='container mt-3'>
+            <div className="nav-scroller py-1 mb-2">
+                <nav className="nav d-flex justify-content-between">
+                    {category.map(c => (
+                        <Link  key={c.id} className="p-2 text-muted" to='/category/world'>{c.name}</Link>
+                    ))}
+                </nav>
+            </div>
 
-
-<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div className="modal-body">
-        ...
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+            <div className="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+                <div className="col-md-6 px-0">
+                    <h1 className="display-4 font-italic">{feature.title}</h1>
+                    <p className="lead my-3">{feature.excerpt}</p>
+                    <p className="lead mb-0">
+                        <Link to={`/blog/${feature.slug}`} className="text-white font-weight-bold">
+                            Continue reading...
+                        </Link>
+                    </p>
+                </div>
+            </div>
     </div>
 );
 
