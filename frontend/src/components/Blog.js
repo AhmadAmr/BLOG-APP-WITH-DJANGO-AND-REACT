@@ -4,7 +4,7 @@ import axios from "axios";
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [feature, setfeature] = useState([]);
-  const [category, setCategory] = useState([]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,20 +21,7 @@ const Blog = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/blog/categories`
-        );
-        console.log(res.data);
-        setCategory(res.data);
-      } catch (err) {
-        alert(err);
-      }
-    };
-    fetchCategory();
-  }, []);
+ 
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -42,7 +29,7 @@ const Blog = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/blog/`
         );
-        console.log(res.data)
+        console.log(res.data);
         setBlogs(res.data);
       } catch (err) {
         alert(err);
@@ -60,9 +47,9 @@ const Blog = () => {
       return list.push(
         <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div className="col p-4 d-flex flex-column position-static">
-             <strong className="d-inline-block mb-2 text-primary">
+            <strong className="d-inline-block mb-2 text-primary">
               {blogs.category.name}
-             </strong>
+            </strong>
             <h3 className="mb-0">{blogs.title}</h3>
             <div className="mb-1 text-muted">
               {blogs.month} {blogs.day}
@@ -97,17 +84,8 @@ const Blog = () => {
   };
 
   return (
-    <div className="container mt-3">
-      <div className="nav-scroller py-1 mb-2">
-        <nav className="nav d-flex justify-content-between">
-          {category.map((c) => (
-            <Link key={c.id} className="p-2 text-muted" to="/category/world">
-              {c.name}
-            </Link>
-          ))}
-        </nav>
-      </div>
-
+    <div className=" mt-3">
+      
       <div className="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div className="col-md-6 px-0">
           <h1 className="display-4 font-italic">{feature.title}</h1>
