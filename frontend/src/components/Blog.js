@@ -12,8 +12,8 @@ const Blog = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/blog/featured`
         );
-        console.log(res.data);
-        setfeature(res.data[0]);
+        console.log(res.data,'feature');
+        setfeature(res.data);
       } catch (err) {
         alert(err);
       }
@@ -29,7 +29,7 @@ const Blog = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/blog/`
         );
-        console.log(res.data);
+        console.log(res.data ,'blog');
         setBlogs(res.data);
       } catch (err) {
         alert(err);
@@ -83,21 +83,28 @@ const Blog = () => {
     return result;
   };
 
+
+  const getfeature = feature.map( f => (
+      <div key = {f.id}>
+      <h1 className="display-4 font-italic">{f.title}</h1>
+      <p className="lead my-3">{f.excerpt}</p>
+      <p className="lead mb-0">
+        <Link
+          to={`/blog/${f.slug}`}
+          className="text-white font-weight-bold"
+        >
+          Continue reading...
+        </Link>
+      </p>
+      </div>
+    )
+  )
   return (
     <div className=" mt-3">
       
       <div className="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div className="col-md-6 px-0">
-          <h1 className="display-4 font-italic">{feature.title}</h1>
-          <p className="lead my-3">{feature.excerpt}</p>
-          <p className="lead mb-0">
-            <Link
-              to={`/blog/${feature.slug}`}
-              className="text-white font-weight-bold"
-            >
-              Continue reading...
-            </Link>
-          </p>
+          {getfeature}
         </div>
       </div>
 

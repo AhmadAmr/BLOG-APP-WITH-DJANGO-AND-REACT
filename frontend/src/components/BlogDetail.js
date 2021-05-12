@@ -8,9 +8,6 @@ return (
         
         
         <div className="container">
-            <div className="row">
-              
-                <div className="col-lg-8">
                     
                     <h1 className="mt-4">Post Title</h1>
                     
@@ -23,7 +20,7 @@ return (
                     <p>Posted on January 1, 2021 at 12:00 PM</p>
                     <hr />
                    
-                    <img className="img-fluid rounded" src="https://via.placeholder.com/900x300" alt="..." />
+                    <img className="img-fluid rounded" src="https://via.placeholder.com/1000x300" alt="..." />
                     <hr />
                     
                     <p className="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
@@ -80,49 +77,7 @@ return (
                         </div>
                     </div>
                 </div>
-                
-                <div className="col-md-4">
-                   
-                    <div className="card my-4">
-                        <h5 className="card-header">Search</h5>
-                        <div className="card-body">
-                            <div className="input-group">
-                                <input className="form-control" type="text" placeholder="Search for..." />
-                                <span className="input-group-append"><button className="btn btn-secondary" type="button">Go!</button></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className="card my-4">
-                        <h5 className="card-header">Categories</h5>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <ul className="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div className="col-lg-6">
-                                    <ul className="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className="card my-4">
-                        <h5 className="card-header">Side Widget</h5>
-                        <div className="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+
         <footer className="py-5 bg-dark">
             <div className="container"><p className="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
         </footer>

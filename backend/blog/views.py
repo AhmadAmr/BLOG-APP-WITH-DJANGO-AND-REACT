@@ -8,7 +8,6 @@ from .serializers import BlogPostSerializer ,CategoriesSerializer
 
 class BlogPostListView(ListAPIView):
     queryset=BlogPost.objects.order_by('date_created')
-    print(queryset)
     serializer_class=BlogPostSerializer
     lookup_field = 'slug'
     permission_classes = (permissions.AllowAny, )
